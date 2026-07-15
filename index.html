@@ -1,0 +1,786 @@
+<!doctype html>
+<html lang="ms">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Borang Commission Team Fames</title>
+  <style>
+    :root {
+      --tf-blue: #0057a8;
+      --tf-blue-2: #0b75d1;
+      --tf-dark: #07172f;
+      --tf-cyan: #12aeea;
+      --tf-yellow: #ffc928;
+      --tf-bg: #f4f8fc;
+      --tf-border: #d9e4f2;
+      --tf-muted: #5f6f83;
+      --tf-danger: #b42318;
+      --tf-success: #087443;
+      --shadow: 0 24px 70px rgba(7, 23, 47, .10);
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+      background:
+        radial-gradient(circle at 10% 0%, rgba(18,174,234,.16), transparent 34%),
+        linear-gradient(135deg, #eef7ff 0%, #ffffff 45%, #f7fbff 100%);
+      color: var(--tf-dark);
+      line-height: 1.5;
+    }
+
+    .page {
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 28px 18px 48px;
+    }
+
+    .card {
+      background: #fff;
+      border: 1px solid var(--tf-border);
+      border-radius: 24px;
+      overflow: hidden;
+      box-shadow: var(--shadow);
+    }
+
+    .hero {
+      position: relative;
+      padding: 30px 34px;
+      background: linear-gradient(135deg, var(--tf-dark), var(--tf-blue));
+      color: #fff;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      right: -85px;
+      top: -95px;
+      width: 260px;
+      height: 260px;
+      border-radius: 50%;
+      background: rgba(18,174,234,.26);
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      right: 34px;
+      bottom: 0;
+      width: 170px;
+      height: 12px;
+      background: var(--tf-yellow);
+      border-radius: 12px 12px 0 0;
+      opacity: .95;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 22px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .logo-mark {
+      width: 58px;
+      height: 58px;
+      border-radius: 16px;
+      background: linear-gradient(135deg, #12aeea, #0057a8);
+      display: grid;
+      place-items: center;
+      font-weight: 900;
+      font-size: 25px;
+      letter-spacing: -2px;
+      box-shadow: inset 0 0 0 2px rgba(255,255,255,.28);
+    }
+
+    .brand strong { display: block; font-size: 20px; letter-spacing: .02em; }
+    .brand span { display: block; color: rgba(255,255,255,.75); font-size: 13px; }
+
+    h1 {
+      margin: 0;
+      font-size: clamp(30px, 5vw, 50px);
+      line-height: 1.03;
+      letter-spacing: -0.045em;
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero p {
+      margin: 14px 0 0;
+      max-width: 760px;
+      color: rgba(255,255,255,.84);
+      font-size: 16px;
+      position: relative;
+      z-index: 1;
+    }
+
+    form { padding: 28px 34px 34px; }
+
+    .section {
+      margin-top: 28px;
+      padding-top: 24px;
+      border-top: 1px solid var(--tf-border);
+    }
+
+    .section:first-child { margin-top: 0; padding-top: 0; border-top: 0; }
+
+    .section-title {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin: 0 0 16px;
+      font-size: 18px;
+      font-weight: 850;
+    }
+
+    .badge {
+      width: 28px;
+      height: 28px;
+      border-radius: 999px;
+      background: var(--tf-yellow);
+      color: var(--tf-dark);
+      display: grid;
+      place-items: center;
+      font-size: 14px;
+      font-weight: 950;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    label {
+      display: block;
+      font-size: 13px;
+      font-weight: 800;
+      margin-bottom: 7px;
+      color: #1b2b45;
+    }
+
+    .required::after { content: " *"; color: var(--tf-danger); }
+
+    input, select, textarea {
+      width: 100%;
+      border: 1px solid var(--tf-border);
+      border-radius: 14px;
+      padding: 12px 13px;
+      font: inherit;
+      background: #fff;
+      color: var(--tf-dark);
+      outline: none;
+      transition: border .15s, box-shadow .15s;
+    }
+
+    textarea { min-height: 88px; resize: vertical; }
+
+    input:focus, select:focus, textarea:focus {
+      border-color: var(--tf-cyan);
+      box-shadow: 0 0 0 4px rgba(18,174,234,.12);
+    }
+
+    .hint { margin-top: 6px; font-size: 12px; color: var(--tf-muted); }
+
+    .summary-row {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+      margin-top: 18px;
+    }
+
+    .summary-card {
+      border-radius: 18px;
+      padding: 16px;
+      background: var(--tf-bg);
+      border: 1px solid var(--tf-border);
+    }
+
+    .summary-card span {
+      display: block;
+      color: var(--tf-muted);
+      font-size: 12px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: .05em;
+    }
+
+    .summary-card strong { display: block; margin-top: 4px; font-size: 24px; }
+    .summary-card.highlight { background: linear-gradient(135deg, #fff7d7, #ffffff); border-color: #ffe287; }
+
+    .table-wrap {
+      width: 100%;
+      overflow-x: auto;
+      border: 1px solid var(--tf-border);
+      border-radius: 18px;
+      background: #fff;
+    }
+
+    table {
+      width: 100%;
+      min-width: 1100px;
+      border-collapse: collapse;
+    }
+
+    th, td {
+      padding: 10px;
+      border-bottom: 1px solid var(--tf-border);
+      vertical-align: top;
+      text-align: left;
+    }
+
+    th {
+      background: #f2f7fc;
+      font-size: 12px;
+      color: #263b5c;
+      text-transform: uppercase;
+      letter-spacing: .04em;
+      position: sticky;
+      top: 0;
+      z-index: 2;
+    }
+
+    td input, td select {
+      min-width: 135px;
+      padding: 10px 11px;
+      border-radius: 12px;
+    }
+
+    td .program { min-width: 260px; }
+    td .date { min-width: 150px; }
+    td .time { min-width: 120px; }
+    td .hours-output {
+      display: block;
+      padding: 10px 11px;
+      border-radius: 12px;
+      background: #f6f9fd;
+      border: 1px solid var(--tf-border);
+      min-width: 90px;
+      font-weight: 800;
+      color: var(--tf-blue);
+    }
+
+    .row-number {
+      width: 38px;
+      height: 38px;
+      border-radius: 12px;
+      background: #eef6ff;
+      display: grid;
+      place-items: center;
+      font-weight: 900;
+      color: var(--tf-blue);
+    }
+
+    .mini-btn {
+      border: 0;
+      border-radius: 12px;
+      padding: 10px 12px;
+      font-weight: 850;
+      cursor: pointer;
+      font: inherit;
+      background: #fff1f0;
+      color: var(--tf-danger);
+      white-space: nowrap;
+    }
+
+    .actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 22px;
+    }
+
+    button {
+      border: 0;
+      border-radius: 14px;
+      padding: 13px 18px;
+      font-weight: 850;
+      cursor: pointer;
+      font: inherit;
+    }
+
+    .primary { background: var(--tf-blue); color: #fff; }
+    .primary:hover { background: var(--tf-blue-2); }
+    .secondary { background: #edf4fb; color: var(--tf-dark); }
+    .ghost { background: transparent; color: var(--tf-blue); }
+
+    .website-trap {
+      position: absolute !important;
+      left: -10000px !important;
+      width: 1px !important;
+      height: 1px !important;
+      overflow: hidden !important;
+    }
+
+    .notice {
+      margin-top: 18px;
+      padding: 14px 16px;
+      border-radius: 16px;
+      background: #ecfdf3;
+      color: var(--tf-success);
+      border: 1px solid #abefc6;
+      display: none;
+      font-weight: 800;
+    }
+
+    .output {
+      display: none;
+      margin-top: 18px;
+      padding: 16px;
+      border-radius: 16px;
+      border: 1px dashed var(--tf-border);
+      background: #fbfdff;
+      white-space: pre-wrap;
+      font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+      font-size: 12px;
+      color: #24344d;
+      max-height: 420px;
+      overflow: auto;
+    }
+
+    @media (max-width: 780px) {
+      .hero, form { padding-left: 20px; padding-right: 20px; }
+      .grid, .summary-row { grid-template-columns: 1fr; }
+      .actions { flex-direction: column; }
+      button { width: 100%; }
+    }
+
+    @media print {
+      body { background: #fff; }
+      .page { max-width: none; padding: 0; }
+      .card { box-shadow: none; border: 0; border-radius: 0; }
+      .actions, .notice, .output, .mini-btn, #addRowBtn { display: none !important; }
+      .table-wrap { overflow: visible; border-radius: 0; }
+      table { min-width: auto; font-size: 10px; }
+      th, td { padding: 6px; }
+      td input, td select, textarea { border-color: #9aa8ba; padding: 6px; border-radius: 6px; }
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <div class="card">
+      <header class="hero">
+        <div class="brand" aria-label="Team Fames">
+          <div class="logo-mark">TF</div>
+          <div>
+            <strong>TEAM FAMES</strong>
+            <span>Commission Form</span>
+          </div>
+        </div>
+        <h1>Borang Commission Team Fames</h1>
+        <p>Isi maklumat commission untuk satu atau lebih kelas, program atau sesi. Tambah baris mengikut jumlah aktiviti yang perlu dihantar.</p>
+      </header>
+
+      <form id="commissionForm">
+        <section class="section">
+          <h2 class="section-title"><span class="badge">1</span> Maklumat Submitter</h2>
+          <div class="grid">
+            <div>
+              <label class="required" for="submitterName">Nama PIC / Submitter</label>
+              <input id="submitterName" name="Nama PIC / Submitter" placeholder="Masukkan nama penuh" maxlength="120" autocomplete="name" required />
+            </div>
+            <div>
+              <label class="required" for="commissionMonth">Bulan</label>
+              <input id="commissionMonth" name="Bulan" type="month" required />
+              <div class="hint">Pilih bulan commission yang ingin dihantar.</div>
+            </div>
+          </div>
+
+          <div class="summary-row" aria-live="polite">
+            <div class="summary-card">
+              <span>Jumlah Kelas/Sesi</span>
+              <strong id="totalRows">0</strong>
+            </div>
+            <div class="summary-card">
+              <span>Jumlah Jam Keseluruhan</span>
+              <strong id="totalHours">0.00</strong>
+            </div>
+            <div class="summary-card highlight">
+              <span>Online / Fizikal</span>
+              <strong id="sessionBreakdown">0 / 0</strong>
+            </div>
+          </div>
+        </section>
+
+        <section class="section">
+          <h2 class="section-title"><span class="badge">2</span> Senarai Kelas / Program / Sesi</h2>
+          <div class="table-wrap">
+            <table aria-label="Senarai kelas commission">
+              <thead>
+                <tr>
+                  <th>No.</th>
+                  <th>Nama Kelas / Program / Sesi</th>
+                  <th>Tarikh</th>
+                  <th>Sesi</th>
+                  <th>Jenis Kelas</th>
+                  <th>Jenis Crew</th>
+                  <th>Masa Bermula</th>
+                  <th>Masa Tamat</th>
+                  <th>Jumlah Jam (Auto)</th>
+                  <th>Tindakan</th>
+                </tr>
+              </thead>
+              <tbody id="classRows"></tbody>
+            </table>
+          </div>
+          <div class="hint">Jumlah jam setiap sesi akan dikira automatik selepas anda isi <strong>Masa Bermula</strong> dan <strong>Masa Tamat</strong>. Jika sesi melepasi tengah malam, kiraan tetap diselaraskan.</div>
+
+          <div class="actions">
+            <button type="button" class="primary" id="addRowBtn">+ Tambah Kelas / Sesi</button>
+            <button type="button" class="secondary" id="copySummaryBtn">Copy Summary</button>
+            <button type="button" class="secondary" id="downloadCsvBtn">Download CSV</button>
+            <button type="button" class="secondary" onclick="window.print()">Print / Save PDF</button>
+            <button type="reset" class="ghost">Reset</button>
+            <button type="submit" class="primary" id="submitBtn">Hantar ke Google Sheet</button>
+          </div>
+
+          <div class="notice" id="notice" role="status" aria-live="polite"></div>
+          <pre class="output" id="output"></pre>
+        </section>
+
+        <section class="section">
+          <h2 class="section-title"><span class="badge">3</span> Catatan Tambahan</h2>
+          <label for="notes">Catatan</label>
+          <textarea id="notes" name="Catatan" maxlength="2000" placeholder="Contoh: Ada kelas split sesi, replacement, special arrangement, atau perkara yang finance/admin perlu tahu."></textarea>
+          <div class="website-trap" aria-hidden="true">
+            <label for="website">Website</label>
+            <input id="website" name="website" tabindex="-1" autocomplete="off" />
+          </div>
+        </section>
+      </form>
+    </div>
+  </main>
+
+  <template id="rowTemplate">
+    <tr class="class-row">
+      <td><span class="row-number">1</span></td>
+      <td>
+        <input class="program" data-field="Nama Kelas / Program / Sesi" maxlength="300" placeholder="Contoh: BBS Bootcamp Batch 1" required />
+      </td>
+      <td>
+        <input class="date" data-field="Tarikh" type="date" required />
+      </td>
+      <td>
+        <select data-field="Sesi" required>
+          <option value="Online">Online</option>
+          <option value="Fizikal">Fizikal</option>
+        </select>
+      </td>
+      <td>
+        <select data-field="Jenis Kelas" required>
+          <option value="Kelas Berbayar">Kelas Berbayar</option>
+          <option value="Kelas Percuma">Kelas Percuma</option>
+        </select>
+      </td>
+      <td>
+        <select data-field="Jenis Crew" required>
+          <option value="Trainer">Trainer</option>
+          <option value="Moderator">Moderator</option>
+          <option value="Crew Support">Crew Support</option>
+        </select>
+      </td>
+      <td>
+        <input class="time" data-field="Masa Bermula" type="time" required />
+      </td>
+      <td>
+        <input class="time" data-field="Masa Tamat" type="time" required />
+      </td>
+      <td><span class="hours-output">0.00</span></td>
+      <td><button type="button" class="mini-btn remove-row">Remove</button></td>
+    </tr>
+  </template>
+
+  <script>
+    const tbody = document.getElementById('classRows');
+    const template = document.getElementById('rowTemplate');
+    const totalRowsEl = document.getElementById('totalRows');
+    const totalHoursEl = document.getElementById('totalHours');
+    const breakdownEl = document.getElementById('sessionBreakdown');
+    const output = document.getElementById('output');
+    const notice = document.getElementById('notice');
+    const form = document.getElementById('commissionForm');
+    const submitBtn = document.getElementById('submitBtn');
+    const GOOGLE_FORM_ENDPOINT = 'https://docs.google.com/forms/d/e/1FAIpQLSc-ahGBgp7pSCrwd-aaxQ-PsbwUe9Q8PgAHJ-VJfqDNdR_uIg/formResponse';
+
+    const GOOGLE_FORM_ENTRIES = {
+      'Submission ID': '1716034273',
+      'Submitted At': '51045420',
+      'Nama PIC / Submitter': '1678351276',
+      'Bulan': '1102388676',
+      'No.': '289870522',
+      'Nama Kelas / Program / Sesi': '309131709',
+      'Tarikh': '1666667415',
+      'Sesi': '1291520028',
+      'Jenis Kelas': '1952999823',
+      'Jenis Crew': '2145095248',
+      'Masa Bermula': '1163912009',
+      'Masa Tamat': '2008899747',
+      'Jumlah Jam': '2015393421',
+      'Catatan': '792174796'
+    };
+    let pendingSubmissionId = null;
+
+    function showNotice(message, isError = false) {
+      notice.replaceChildren();
+      notice.append(document.createTextNode(message));
+      notice.style.display = 'block';
+      notice.style.background = isError ? '#fff1f0' : '#ecfdf3';
+      notice.style.borderColor = isError ? '#fecdca' : '#abefc6';
+      notice.style.color = isError ? 'var(--tf-danger)' : 'var(--tf-success)';
+    }
+
+    function makeSubmissionId() {
+      if (globalThis.crypto?.randomUUID) return crypto.randomUUID();
+      return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, character => {
+        const random = Math.floor(Math.random() * 16);
+        return (character === 'x' ? random : (random & 0x3) | 0x8).toString(16);
+      });
+    }
+
+    async function postGoogleFormRow(values) {
+      const body = new URLSearchParams({ fvv: '1', pageHistory: '0' });
+      Object.entries(values).forEach(([title, value]) => {
+        body.set(`entry.${GOOGLE_FORM_ENTRIES[title]}`, String(value ?? ''));
+      });
+      await fetch(GOOGLE_FORM_ENDPOINT, {
+        method: 'POST',
+        mode: 'no-cors',
+        credentials: 'omit',
+        body
+      });
+    }
+
+    function currentMonthValue() {
+      const d = new Date();
+      return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}`;
+    }
+
+    function timeToMinutes(value) {
+      if (!value || !value.includes(':')) return null;
+      const [hour, minute] = value.split(':').map(Number);
+      return (hour * 60) + minute;
+    }
+
+    function calculateHours(start, end) {
+      const startMin = timeToMinutes(start);
+      const endMin = timeToMinutes(end);
+      if (startMin === null || endMin === null) return 0;
+      let diff = endMin - startMin;
+      if (diff < 0) diff += 24 * 60; // support sessions that cross midnight
+      return diff / 60;
+    }
+
+    function getRows() {
+      return Array.from(tbody.querySelectorAll('tr.class-row'));
+    }
+
+    function renumberRows() {
+      getRows().forEach((row, index) => {
+        row.querySelector('.row-number').textContent = index + 1;
+      });
+    }
+
+    function updateRowHours(row) {
+      const start = row.querySelector('[data-field="Masa Bermula"]').value;
+      const end = row.querySelector('[data-field="Masa Tamat"]').value;
+      const hours = calculateHours(start, end);
+      row.querySelector('.hours-output').textContent = hours.toFixed(2);
+      return hours;
+    }
+
+    function updateSummary() {
+      const rows = getRows();
+      let totalHours = 0;
+      let online = 0;
+      let physical = 0;
+
+      rows.forEach(row => {
+        totalHours += updateRowHours(row);
+        const session = row.querySelector('[data-field="Sesi"]').value;
+        if (session === 'Online') online += 1;
+        if (session === 'Fizikal') physical += 1;
+      });
+
+      totalRowsEl.textContent = rows.length;
+      totalHoursEl.textContent = totalHours.toFixed(2);
+      breakdownEl.textContent = `${online} / ${physical}`;
+    }
+
+    function addRow(prefill = {}) {
+      const clone = template.content.cloneNode(true);
+      const row = clone.querySelector('tr');
+      row.querySelectorAll('[data-field]').forEach(input => {
+        const field = input.dataset.field;
+        if (prefill[field]) input.value = prefill[field];
+        input.addEventListener('input', updateSummary);
+        input.addEventListener('change', updateSummary);
+      });
+      row.querySelector('.remove-row').addEventListener('click', () => {
+        if (getRows().length <= 1) {
+          row.querySelectorAll('[data-field]').forEach(input => input.value = '');
+        } else {
+          row.remove();
+        }
+        renumberRows();
+        updateSummary();
+      });
+      tbody.appendChild(clone);
+      renumberRows();
+      updateSummary();
+    }
+
+    function collectData() {
+      const submitter = document.getElementById('submitterName').value.trim();
+      const month = document.getElementById('commissionMonth').value;
+      const notes = document.getElementById('notes').value.trim();
+      const rows = getRows().map((row, index) => {
+        const item = { 'No.': index + 1 };
+        row.querySelectorAll('[data-field]').forEach(input => {
+          item[input.dataset.field] = input.value.trim();
+        });
+        item['Jumlah Jam'] = updateRowHours(row).toFixed(2);
+        return item;
+      });
+      return { submitter, month, notes, rows };
+    }
+
+    function buildSummary() {
+      const { submitter, month, notes, rows } = collectData();
+      const totalHours = rows.reduce((sum, row) => sum + Number(row['Jumlah Jam'] || 0), 0);
+      let text = `BORANG COMMISSION TEAM FAMES\n\n`;
+      text += `Nama PIC / Submitter: ${submitter}\n`;
+      text += `Bulan: ${month}\n`;
+      text += `Jumlah Kelas/Sesi: ${rows.length}\n`;
+      text += `Jumlah Jam: ${totalHours.toFixed(2)}\n\n`;
+      text += `SENARAI KELAS / PROGRAM / SESI\n`;
+      rows.forEach(row => {
+        text += `\n${row['No.']}. ${row['Nama Kelas / Program / Sesi']}\n`;
+        text += `   Tarikh: ${row['Tarikh']}\n`;
+        text += `   Sesi: ${row['Sesi']}\n`;
+        text += `   Jenis Kelas: ${row['Jenis Kelas']}\n`;
+        text += `   Jenis Crew: ${row['Jenis Crew']}\n`;
+        text += `   Masa: ${row['Masa Bermula']} - ${row['Masa Tamat']} (${row['Jumlah Jam']} jam)\n`;
+      });
+      if (notes) text += `\nCatatan:\n${notes}\n`;
+      return text;
+    }
+
+    function csvEscape(value) {
+      return '"' + String(value ?? '').replaceAll('"', '""') + '"';
+    }
+
+    function downloadCSV() {
+      const { submitter, month, notes, rows } = collectData();
+      const headers = [
+        'Nama PIC / Submitter',
+        'Bulan',
+        'No.',
+        'Nama Kelas / Program / Sesi',
+        'Tarikh',
+        'Sesi',
+        'Jenis Kelas',
+        'Jenis Crew',
+        'Masa Bermula',
+        'Masa Tamat',
+        'Jumlah Jam',
+        'Catatan'
+      ];
+      const csvRows = rows.map(row => [
+        submitter,
+        month,
+        row['No.'],
+        row['Nama Kelas / Program / Sesi'],
+        row['Tarikh'],
+        row['Sesi'],
+        row['Jenis Kelas'],
+        row['Jenis Crew'],
+        row['Masa Bermula'],
+        row['Masa Tamat'],
+        row['Jumlah Jam'],
+        notes
+      ].map(csvEscape).join(','));
+      const csv = headers.map(csvEscape).join(',') + '\n' + csvRows.join('\n') + '\n';
+      const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+      const a = document.createElement('a');
+      a.href = URL.createObjectURL(blob);
+      a.download = `team-fames-commission-${month || currentMonthValue()}.csv`;
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+      URL.revokeObjectURL(a.href);
+    }
+
+    document.getElementById('commissionMonth').value = currentMonthValue();
+    document.getElementById('addRowBtn').addEventListener('click', () => addRow());
+    document.getElementById('downloadCsvBtn').addEventListener('click', downloadCSV);
+    document.getElementById('copySummaryBtn').addEventListener('click', async () => {
+      const text = buildSummary();
+      output.textContent = text;
+      output.style.display = 'block';
+      try { await navigator.clipboard.writeText(text); } catch(e) {}
+      showNotice('Summary copied.');
+      setTimeout(() => notice.style.display = 'none', 2200);
+    });
+
+    // Any edit creates a fresh id; retrying an unchanged failed request retains its id.
+    form.addEventListener('input', () => { pendingSubmissionId = null; });
+    form.addEventListener('change', () => { pendingSubmissionId = null; });
+    form.addEventListener('submit', async (event) => {
+      event.preventDefault();
+      if (!form.reportValidity()) return;
+      if (document.getElementById('website').value) return;
+      const { submitter, month, notes, rows } = collectData();
+      pendingSubmissionId ||= makeSubmissionId();
+      const submittedAt = new Date().toISOString();
+      submitBtn.disabled = true;
+      submitBtn.textContent = 'Sedang hantar…';
+      try {
+        await Promise.all(rows.map(row => postGoogleFormRow({
+          'Submission ID': pendingSubmissionId,
+          'Submitted At': submittedAt,
+          'Nama PIC / Submitter': submitter,
+          'Bulan': month,
+          'No.': row['No.'],
+          'Nama Kelas / Program / Sesi': row['Nama Kelas / Program / Sesi'],
+          'Tarikh': row['Tarikh'],
+          'Sesi': row['Sesi'],
+          'Jenis Kelas': row['Jenis Kelas'],
+          'Jenis Crew': row['Jenis Crew'],
+          'Masa Bermula': row['Masa Bermula'],
+          'Masa Tamat': row['Masa Tamat'],
+          'Jumlah Jam': row['Jumlah Jam'],
+          'Catatan': notes
+        })));
+        showNotice(`Submission berjaya diterima. ${rows.length} baris akan direkodkan dalam masa kira-kira 1 minit. ID: ${pendingSubmissionId}`);
+      } catch (error) {
+        showNotice('Tidak dapat hantar borang. Semak sambungan internet dan cuba semula.', true);
+      } finally {
+        submitBtn.disabled = false;
+        submitBtn.textContent = 'Hantar ke Google Sheet';
+      }
+    });
+
+    form.addEventListener('reset', () => {
+      setTimeout(() => {
+        tbody.replaceChildren();
+        pendingSubmissionId = null;
+        document.getElementById('submitterName').value = '';
+        document.getElementById('commissionMonth').value = currentMonthValue();
+        addRow();
+        output.style.display = 'none';
+      }, 0);
+    });
+
+    // Default rows so any submitter can start entering multiple classes immediately.
+    addRow();
+    addRow();
+    addRow();
+  </script>
+</body>
+</html>
